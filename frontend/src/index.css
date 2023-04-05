@@ -5,9 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  counter-reset: Serial; 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+table{
+  border-collapse: separate;
+}
+
+tr td:first-child:before{
+counter-increment: Serial;      
+content: counter(Serial); 
 }
