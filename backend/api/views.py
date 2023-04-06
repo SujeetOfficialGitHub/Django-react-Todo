@@ -8,13 +8,24 @@ from .serializers import TodoSerializer
 class TodoView(APIView):
     def post(self, request, format=None):
         data = request.data 
-        data['user'] = request.user.id
         serializer = TodoSerializer(data= data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'data': serializer.data}, status=status.HTTP_201_CREATED)
     
     def get(self, request, format=None):
-        queryset = Todo.objects.filter(user=request.user.id)
+        queryset = Todo.objects.filter()
         serializer = TodoSerializer(queryset, many=True)
         return Response({'data': serializer.data}, status=status.HTTP_200_OK)
+    
+    def delete(self, request, id, format=None):
+        queryset = Todo.objects.get(id=id)
+        queryset.delete()
+        return Response({'message': 'Item deleted'}, status=status.HTTP_200_OK)
+    
+    def put(self, request, id, format=None):
+        queryset = Todo.objects.get(id=id)
+        serializer = TodoSerializer(queryset, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'message': 'data updated', 'data': serializer.data}, status=status.HTTP_200_OK)

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TodoDate = (props) => {
-    const d = new Date()
+    const d = new Date(props.date)
     const date = d.getDate()
     const month = d.getMonth()+1
     const year = d.getFullYear()

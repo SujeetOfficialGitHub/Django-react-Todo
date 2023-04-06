@@ -4,4 +4,4 @@ from .models import Todo
 
 @admin.register(Todo)
 class TodoAdmin(admin.ModelAdmin):
-    list_display = ['user', 'title', 'amount']
+    list_display = ['title', 'category', 'date']
