@@ -18,9 +18,12 @@ const Todo = (props) => {
     const todoList = useSelector(state => state.todo.todoList)
     // console.log(todoList)
 
+
   return (
     <ContainerBox className="mt-lg-4">
-        <Table striped bordered hover>
+        <h3 className='text-center bg-secondary p-2 text-light'>Your Todos List</h3>
+        {todoList.length === 0 && <div className='text-center bg-secondary p-2 text-light'><p className='p-0 m-0'>No Todos items here</p><p>Please add your Todos</p></div>}
+        {todoList.length > 0 && <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>#</th>
@@ -37,12 +40,13 @@ const Todo = (props) => {
                         id={item.id}
                         title={item.title}
                         category={item.category}
+                        description={item.description}
                         date={item.date}
                         onPopulateDataIntoForm={props.onPopulateDataIntoForm}
                     />
                 ))}
             </tbody>
-        </Table>
+        </Table>}
     </ContainerBox>
   )
 }

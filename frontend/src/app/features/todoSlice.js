@@ -10,7 +10,6 @@ export const fetchTodo = createAsyncThunk('todo/fetchTodo', async() => {
 export const addTodo = createAsyncThunk('todo/addTodo', async({enteredData},{rejectWithValue}) => {
     try{
         const res = await axios.post(`/api/todo/`, enteredData);
-        console.log('add Added')
         return res.data.data
     }catch(error){
         return rejectWithValue(error.response.message)
